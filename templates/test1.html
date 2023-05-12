@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="UTF-8">
+		<title>test</title>
+		
+        <script type="text/javascript" src="/static/assets/js/jquery.min.js"></script>
+
+</head>
+<body>
+	<!-- 3D地图容器 -->
+	<div id="main" style="width: 100%; height: 400px;">
+	<button onclick="test_click()">test</button>
+	
+    <table class="table"  cellspacing="0" cellpadding="0" width="100%" align="center" border="0">
+ 
+                        <tr>
+                            <th>
+                                任务ID
+                            </th>
+                            <th>
+                                用户名
+                            </th>
+                            <th>
+                                最后运行时间
+                            </th>
+                            <th>
+                                数据包完成数量
+                            </th>
+                            <th>
+                                数据包入库数量
+                            </th>
+                            <th>
+                                状态
+                            </th>
+                        </tr>
+ 
+                        <tbody id="tabletext">
+                        
+                                <tr>
+                                    <td>
+                                        1
+                                    </td>
+                                    <td>
+                                        2
+                                    </td>
+                                    <td>
+                                        3
+                                    </td>
+                                    <td>
+                                        4
+                                    </td>
+                                    <td>
+                                       5
+                                    </td>
+                                    <td>
+                                        6
+                                    </td>
+                                </tr>
+                        
+                        </tbody>
+                    </table>
+	</div>
+	
+	<script>	
+		
+	
+	 var test_click=function getdata() {
+
+            $.ajax({
+                type: 'get',
+                url: '/next',
+                dataType: 'json',
+                success: function(data) {
+                    console.log('success', data);
+					    var str = "";//把数据组装起来
+                        for (var i = 0; i < 5; i++) {
+                            {#str += "<tr><td>" + data.dataInfo[i].id+#}
+                            {#    "</td><td>" + data.dataInfo[i].colName +#}
+                            {#    "</td><td>" + data.dataInfo[i].dbType +#}
+                            {#    "</td><td>" + data.dataInfo[i].colId +#}
+                            {#    "</td><td>" + data.dataInfo[i].defaultValue +#}
+                            {#    "</td><td>" + data.dataInfo[i].colType +#}
+                            {#    "</td><td>" + data.dataInfo[i].colLength +#}
+                            {#    "</td><td>" + data.dataInfo[i].ver +#}
+                            {#    "</td><td>" + data.dataInfo[i].isEnable + "</td></tr>";#}
+
+                             str += "<tr><td>" + data[i][1]+
+                                "</td><td>" + data[i][2] +
+                                "</td><td>" + data[i][3] +
+                                "</td><td>" + data[i][4] +
+
+
+                                "</td><td>" + data[i][0] + "</td></tr>";
+                        }
+                        $("#tabletext").html(str);//把拼好的样式填到指定的位置，一个Ajax的表格刷新功能就完成了
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    console.log('error', errorThrown);
+                }
+            });
+        }
+       
+	</script>
+</body>
+</html>

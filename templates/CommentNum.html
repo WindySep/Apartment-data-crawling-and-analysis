@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>评论数量Top20</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="static/assets/img/favicon.png" rel="icon">
+  <link href="static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i,900" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="static/assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="static/assets/css/style.css" rel="stylesheet">
+{#    设置Ajax上下翻页   #}
+    <script>
+        //这些是跳转上下页的方法ajax最重要的是字符串的拼接
+        //定义查找          上一个的方法
+        function last() {
+            //获取到上一页页码准备送入后台查询
+            var a = document.getElementById("lastIndex").value
+            if(a<=0){
+                alert("朋友,这已经是第一页了!")
+            }else {
+                 //alert("上一页面:"+a)
+                $.ajax({
+                url:'/next',
+                type:'POST',
+                dataType:'json',
+                data: a,
+                success: function (data) {
+                    console.log('返回上一页的信息')
+                    console.log(data)
+                    console.log(data[0])
+                    var str = "";//把数据组装起来
+                        for (var i = 0; i < 10; i++) {
+                             str +=
+                                 "<tr><td>" + "<img src='"+ data[i][7] +"' width='220px' height='125px' alt='加载失败,请刷新!'>" +
+                                "</td><td>" +"<a href ="+"\"" +data[i][8] + "\""+">" + data[i][1]+"</a>" +
+                                "</td><td>" + data[i][2] +
+                                "</td><td>" + data[i][3] +
+                                "</td><td>" + data[i][4] +
+                                "</td><td>" + data[i][5] +
+                                "</td><td>" + data[i][6] + "</td></tr>";
+                        }
+
+                    //拼接表头和样式
+                    str = "<tbody>"+"<tr><td>"+"店铺图片"+
+                                       "</td><td>"+"店铺名称"+
+                                       "</td><td>"+"店铺号"+
+                                       "</td><td>"+"店铺评分"+
+                                       "</td><td>"+"店铺地址"+
+                                       "</td><td>"+"评论人数"+
+                                       "</td><td>"+"人均价格"+
+                                 "</td></tr>"
+                        + str + "<tbody>"
+                    //重新定义上下页面页码
+                        $("#lastIndex").val(data[data.length-1]-1)
+                        $("#nextIndex").val(data[data.length-1]+1)
+                        $("#tabletext").html(str);//把拼好的样式填到指定的位置，一个Ajax的表格刷新功能就完成了
+                },
+                error:function (msg) {
+                console.log(msg);
+                alert('系统发生错误');
+                }
+            })
+            }
+
+
+        }
+        //定义查找          下一个的方法
+        function next() {
+            var a = document.getElementById("nextIndex").value
+
+            var max = document.getElementById("maxindex").value
+            if (a-1 >= max){
+                alert("伙计,这是最后一页了111!")
+                alert(max)
+                alert(a)
+            }else {
+               // alert("下一页是:"+a)
+                 $.ajax({
+                url:'/next',
+                type:'POST',
+                dataType:'json',
+                data: a,
+
+                success: function (data) {
+                    console.log('返回下一页的信息')
+                    console.log(data)
+                    console.log(data[0])
+
+                    {#<img src="data[i][]" width="220px" height="125px" alt="加载失败,请刷新该页面">#}
+                    var str = "";//把数据组装起来
+                        for (var i = 0; i < data.length-1; i++) {
+                             str +=
+                                 "<tr><td>" + "<img src='"+ data[i][7] +"' width='220px' height='125px' alt='加载失败,请刷新!'>" +
+                                "</td><td>" +"<a href ="+"\"" +data[i][8] + "\""+">" + data[i][1]+"</a>" +
+                                "</td><td>" + data[i][2] +
+                                "</td><td>" + data[i][3] +
+                                "</td><td>" + data[i][4] +
+                                "</td><td>" + data[i][5] +
+                                "</td><td>" + data[i][6] + "</td></tr>";
+                        }
+
+                    //拼接表头和样式
+                    str = "<tbody>"+"<tr><td>"+"店铺图片"+
+                                       "</td><td>"+"店铺名称"+
+                                       "</td><td>"+"店铺号"+
+                                       "</td><td>"+"店铺评分"+
+                                       "</td><td>"+"店铺地址"+
+                                       "</td><td>"+"评论人数"+
+                                       "</td><td>"+"人均价格"+
+                                 "</td></tr>"
+                        + str + "<tbody>"
+                        $("#lastIndex").val(data[data.length-1]-1)
+                        $("#nextIndex").val(data[data.length-1]+1)
+                        $("#tabletext").html(str);//把拼好的样式填到指定的位置，一个Ajax的表格刷新功能就完成了
+                },
+                error:function (msg) {
+                console.log(msg);
+                alert('系统发生错误');
+                }
+            })
+
+            }
+
+        }
+        //最后一页
+        function endindex() {
+            var max = document.getElementById("maxindex").value
+
+            if (false){
+                alert("伙计,这是最后一页了!")
+            }else {
+                 $.ajax({
+                url:'/next',
+                type:'POST',
+                dataType:'json',
+                data:max,
+
+                success: function (data) {
+                    console.log('返回下一页的信息')
+                    console.log(data)
+                    console.log(data[0])
+
+                    {#<img src="data[i][]" width="220px" height="125px" alt="加载失败,请刷新该页面">#}
+                    var str = "";//把数据组装起来
+                        for (var i = 0; i < data.length-1; i++) {
+                             str +=
+                                 "<tr><td>" + "<img src='"+ data[i][7] +"' width='220px' height='125px' alt='加载失败,请刷新!'>" +
+                                "</td><td>" +"<a href ="+"\"" +data[i][8] + "\""+">" + data[i][1]+"</a>" +
+                                "</td><td>" + data[i][2] +
+                                "</td><td>" + data[i][3] +
+                                "</td><td>" + data[i][4] +
+                                "</td><td>" + data[i][5] +
+                                "</td><td>" + data[i][6] + "</td></tr>";
+                        }
+
+                    //拼接表头和样式
+                    str = "<tbody>"+"<tr><td>"+"店铺图片"+
+                                       "</td><td>"+"店铺名称"+
+                                       "</td><td>"+"店铺号"+
+                                       "</td><td>"+"店铺评分"+
+                                       "</td><td>"+"店铺地址"+
+                                       "</td><td>"+"评论人数"+
+                                       "</td><td>"+"人均价格"+
+                                 "</td></tr>"
+                        + str + "<tbody>"
+                        $("#lastIndex").val(data[data.length-1]-1)
+                        $("#nextIndex").val(data[data.length-1]+1)
+                        $("#tabletext").html(str);//把拼好的样式填到指定的位置，一个Ajax的表格刷新功能就完成了
+                },
+                error:function (msg) {
+                console.log(msg);
+                alert('系统发生错误');
+                }
+            })
+
+            }
+
+        }
+        function first() {
+                 $.ajax({
+                url:'/next',
+                type:'POST',
+                dataType:'json',
+                data:"1",
+
+                success: function (data) {
+                    console.log('返回下一页的信息')
+                    console.log(data)
+                    console.log(data[0])
+
+                    {#<img src="data[i][]" width="220px" height="125px" alt="加载失败,请刷新该页面">#}
+                    var str = "";//把数据组装起来
+                        for (var i = 0; i < data.length-1; i++) {
+                             str +=
+                                 "<tr><td>" + "<img src='"+ data[i][7] +"' width='220px' height='125px' alt='加载失败,请刷新!'>" +
+                                "</td><td>" +"<a href ="+"\"" +data[i][8] + "\""+">" + data[i][1]+"</a>" +
+                                "</td><td>" + data[i][2] +
+                                "</td><td>" + data[i][3] +
+                                "</td><td>" + data[i][4] +
+                                "</td><td>" + data[i][5] +
+                                "</td><td>" + data[i][6] + "</td></tr>";
+                        }
+
+                    //拼接表头和样式
+                    str = "<tbody>"+"<tr><td>"+"店铺图片"+
+                                       "</td><td>"+"店铺名称"+
+                                       "</td><td>"+"店铺号"+
+                                       "</td><td>"+"店铺评分"+
+                                       "</td><td>"+"店铺地址"+
+                                       "</td><td>"+"评论人数"+
+                                       "</td><td>"+"人均价格"+
+                                 "</td></tr>"
+                        + str + "<tbody>"
+                        $("#lastIndex").val(data[data.length-1]-1)
+                        $("#nextIndex").val(data[data.length-1]+1)
+                        $("#tabletext").html(str);//把拼好的样式填到指定的位置，一个Ajax的表格刷新功能就完成了
+                },
+                error:function (msg) {
+                console.log(msg);
+                alert('系统发生错误');
+                }
+            })
+
+
+
+        }
+    </script>
+
+</head>
+
+<body>
+
+  <!-- ======= 最上   作者信息 ======= -->
+   <section id="topbar" class="d-none d-lg-block">
+    <div class="container clearfix">
+      <div class="contact-info float-left">
+        <i class="icofont-envelope"></i><a href="2587769686@qq.com">联系作者：RunsenLiu</a>
+        <i ></i> 作者：Runsen
+      </div>
+      <div class="social-links float-right">
+          数据来自
+          <a href="https://nj.meituan.com/meishi/">美团</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======= 标题 和 菜单   Header ======= -->
+  <header id="header">
+    <div class="container">
+
+      <div class="logo float-left">
+        <h1 class="text-light"><a href="index.html"><span>南京美食精选</span></a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="static/assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav class="nav-menu float-right d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="/index">主页</a></li>
+          <li><a href="/showAll">美食总览</a></li>
+{#          <li><a href="{{ url_for("showAll",index = 1) }}">美食总览</a></li>#}
+          <li><a href="/dataAnalysis">数据分析</a></li>
+{#          <li><a href="/wordCloud">词    云</a></li>#}
+          <li><a href="/aboutMe">关于作者</a></li>
+          <li class="drop-down"><a href=""> 获取数据 </a>
+            <ul>
+              <li><a href="/download_6">下载6月份数据</a></li>
+              <li><a href="/download_7">下载7月份数据</a></li>
+              <li><a href="#">下载8月份数据(下月更新)</a></li>
+              <li><a>每月更新数据</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <section class="counts section-bg">
+      <div class="container">
+
+       <div class="row">
+
+          <div class="col-lg-3 col-md-6 text-center" data-aos="fade-up">
+            <div class="count-box">
+              <i class="icofont-simple-smile" style="color: #20b38e;"></i>
+                <p><a href="/Evaluate">按照评分排名</a></p>
+              <span data-toggle="counter-up">20</span>
+
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 text-center" data-aos="fade-up" data-aos-delay="200">
+            <div class="count-box">
+              <i class="icofont-document-folder" style="color: #c042ff;"></i>
+                <p><a href="/moneyTop">按照消费金额</a></p>
+                 <span data-toggle="counter-up">25</span>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 text-center" data-aos="fade-up" data-aos-delay="600">
+            <div class="count-box">
+              <i class="icofont-users-alt-5" style="color: #ffb459;"></i>
+                <p><a href="/CommentNum">按照评论数查询top</a></p>
+              <span data-toggle="counter-up">20</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Counts Section -->
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services">
+        <div class="section-title">
+          <h2>美食清单排序列表</h2>
+
+            <table class="table table-striped"  id="tabletext">
+
+                {#                列表头#}
+                <tr>
+                    <td>店铺图片</td>
+                    <td>店铺名称</td>
+                    <td>店铺号</td>
+                    <td>店铺评分</td>
+                    <td>店铺地址</td>
+                    <td>评论人数</td>
+                    <td>人均价格</td>
+                </tr>
+            {% for meishi in meishis %}
+                <tr>
+                    <td>
+                         <img src="{{ meishi[-2]}}" width="220px" height="125px" alt="加载失败,请刷新该页面">
+                    </td>
+                {#        店铺名称 + 店铺连接        #}
+                <td>
+                    <a href="{{ meishi[-1] }}">{{ meishi[1] }}</a>
+                </td>
+                {#       店铺id         #}
+                <td>{{ meishi[2] }}</td>
+                    {#       评分        #}
+                <td>{{ meishi[3] }}</td>
+                    {#       地址        #}
+                <td>{{ meishi[4] }}</td>
+                    {# 评分人数 #}
+                <td>{{ meishi[5] }}</td>
+                    {# 人均价格 #}
+                <td>{{ meishi[6] }}</td>
+                </tr>
+
+                {% endfor %}
+
+            </table>
+        </div>
+      <div id="text2">
+{#          隐藏表情用于分页显示上一页的页码:#}
+          <input id="lastIndex" value="0" hidden/>
+{#          隐藏表情用于分页显示下一页的页码:#}
+          <input id="nextIndex" value="2" hidden/>
+{#          隐藏 最大页页号#}
+          <input id="maxindex" value="{{ maxindex }}" hidden>
+      </div>
+        <div class="section-title">
+            <a>    </a>
+            <div class="box1">
+{#                <table>#}
+{#                    <a onclick="first()">首页</a> __#}
+{#                    <a onclick="last()">上一页</a>__#}
+{##}
+{#                    <a onclick="next()">下一页</a> __#}
+{#                    <a onclick="endindex()">尾页</a>#}
+{##}
+{#                </table>#}
+              <div class="box1">
+                 <ul>
+{#                    <li><a href="showAll.html">首页</a></li>#}
+{#                    <li><a href="">上一页</a></li>#}
+{#                    <li><a href="">2</a></li>#}
+{#                     <li>………</li>#}
+{#                     <li><a onclick="next()">下一页</a></li>#}
+{#                     <li><a href="">尾页</a></li>#}
+                 </ul>
+              </div>
+            </div>
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= 页脚 + 我的博客======= -->
+  <footer id="footer">
+
+    <div class="container">
+      <div class="copyright">
+        &copy; 赵瑞峰 <strong><span>美食数据分析</span></strong>blog_二十六级龙卷风
+      </div>
+      <div class="credits">
+        更多详见博客 <a href="https://zrf2587769686.gitee.io">zrf2587769686.gitee.io</a>
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer -->
+
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="static/assets/vendor/jquery/jquery.min.js"></script>
+  <script src="static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="static/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="static/assets/vendor/php-email-form/validate.js"></script>
+  <script src="static/assets/vendor/jquery-sticky/jquery.sticky.js"></script>
+  <script src="static/assets/vendor/venobox/venobox.min.js"></script>
+  <script src="static/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+  <script src="static/assets/vendor/counterup/counterup.min.js"></script>
+  <script src="static/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="static/assets/vendor/aos/aos.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="static/assets/js/main.js"></script>
+
+</body>
+
+</html>

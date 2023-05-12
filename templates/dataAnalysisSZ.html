@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>深圳数据分析</title>
+    {# 引入Echarts #}
+    <script src="/static/assets/js/echarts.min.js"></script>
+
+    <meta content="" name="descriptison">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="static/assets/img/favicon.png" rel="icon">
+    <link href="static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i,900"
+          rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="static/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="static/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="static/assets/vendor/venobox/venobox.css" rel="stylesheet">
+    <link href="static/assets/vendor/aos/aos.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="static/assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- ======= 最上   作者信息 ======= -->
+<section id="topbar" class="d-none d-lg-block">
+    <div class="container clearfix">
+        <div class="contact-info float-left">
+            <i class="icofont-envelope"></i><a href="1093595461@qq.com">联系作者：He Ruoyang</a>
+            <i></i> 作者：He Ruoyang
+        </div>
+        <div class="social-links float-right">
+            数据来自
+            <a href="https://gz.lianjia.com/zufang/">链家</a>
+        </div>
+    </div>
+</section>
+
+
+<!-- ======= 标题 和 菜单   Header ======= -->
+<header id="header">
+    <div class="container">
+
+        <div class="logo float-left">
+            <h1 class="text-light"><a href="index.html"><span>租房数据分析</span></a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html"><img src="static/assets/img/logo.png" alt="" class="img-fluid"></a>-->
+        </div>
+
+        <nav class="nav-menu float-right d-none d-lg-block">
+            <ul>
+                <li class="active"><a href="/index">主页</a></li>
+                <li><a href="/showAll">租房信息</a></li>
+                <li><a href="/dataAnalysisSZ">深圳数据分析</a></li>
+                <li><a href="/wordCloud">词 云</a></li>
+            </ul>
+        </nav><!-- .nav-menu -->
+
+    </div>
+</header><!-- End Header -->
+<section id="services" class="services">
+    <div class="container">
+        <div class="section-title">
+            <h2>租房数据分析</h2>
+        </div>
+        {#
+        <div class="row">#}
+            {#
+            <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up">#}
+                {#
+                <div class="icon"><i class="icofont-computer"></i></div>
+                #}
+                {# <h4 class="title"><a href="">Lorem Ipsum</a></h4>#}
+                {# <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi
+                    sint occaecati cupiditate non provident</p>#}
+                {#
+            </div>
+            #}
+            {#
+            <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">#}
+                {#
+                <div class="icon"><i class="icofont-chart-bar-graph"></i></div>
+                #}
+                {# <h4 class="title"><a href="">Dolor Sitema</a></h4>#}
+                {# <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                    commodo consequat tarad limino ata</p>#}
+                {#
+            </div>
+            #}
+            {#
+            <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">#}
+                {#
+                <div class="icon"><i class="icofont-earth"></i></div>
+                #}
+                {# <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>#}
+                {# <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                    eu fugiat nulla pariatur</p>#}
+                {#
+            </div>
+            #}
+            {#
+            <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">#}
+                {#
+                <div class="icon"><i class="icofont-image"></i></div>
+                #}
+                {# <h4 class="title"><a href="">Magni Dolores</a></h4>#}
+                {# <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                    deserunt mollit anim id est laborum</p>#}
+                {#
+            </div>
+            #}
+            {#
+            <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="400">#}
+                {#
+                <div class="icon"><i class="icofont-settings"></i></div>
+                #}
+                {# <h4 class="title"><a href="">Nemo Enim</a></h4>#}
+                {# <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
+                    praesentium voluptatum deleniti atque</p>#}
+                {#
+            </div>
+            #}
+            {#
+            <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="500">#}
+                {#
+                <div class="icon"><i class="icofont-tasks-alt"></i></div>
+                #}
+                {# <h4 class="title"><a href="">Eiusmod Tempor</a></h4>#}
+                {# <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore,
+                    cum soluta nobis est eligendi</p>#}
+                {#
+            </div>
+            #}
+            {#
+        </div>
+        #}
+    </div>
+</section><!-- End Services Section -->
+
+<main id="main">
+    <!-- ======= 表格 ======= -->
+    <section class="counts section-bg">
+        <div class="container">
+
+            <div class="row">
+                <!--价格-->
+                <!--饼图-->
+                <div class="col-lg-3 col-md-6 text-center" data-aos="fade-up" style="max-width: 55%">
+                    <div class="count-box" style="width: 550px;height: 650px;background: rgba(181,250,72,0.47)">
+                        <div id="container" style="height: 80%"></div>
+
+                        <script type="text/javascript">
+                            var dom = document.getElementById("container");
+                            var myChart = echarts.init(dom);
+                            var app = {};
+                            option = null;
+                            option = {
+                                        title: {
+                                                    text: '深圳租房价格分布',
+                                                    subtext: '数据来自链家',
+                                                    left: 'center'
+                                        },
+                                        tooltip: {
+                                                    trigger: 'item',
+                                                    formatter: '{a} <br/>{b} : {c} ({d}%)'
+                                        },
+                                        legend: {
+                                                    orient: 'horizontal',
+                                                    y: 'bottom',
+                                                    data: ['0-2000元', '2000-4000元', '4000-6000元', '6000-8000元', '8000-10000元', '10000-12000元', '12000-14000元', '14000元以上']
+                                        },
+                                        series: [
+                                                    {
+                                                        name: '访问来源',
+                                                        type: 'pie',
+                                                        radius: '50%',
+                                                        center: ['50%', '60%'],
+                                                        data: [
+                                                                {value: {{moneyNum['num0_2']}}, name: '0-2000元'},
+                                                                {value: {{moneyNum['num2_4']}}, name: '2000-4000元'},
+                                                                {value: {{moneyNum['num4_6']}}, name: '4000-6000元'},
+                                                                {value: {{moneyNum['num6_8']}}, name: '6000-8000元'},
+                                                                {value: {{moneyNum['num8_10']}}, name: '8000-10000元'},
+                                                                {value: {{moneyNum['num10_12']}}, name: '10000-12000元'},
+                                                                {value: {{moneyNum['num12_14']}}, name: '12000-14000元'},
+                                                                {value: {{moneyNum['num14']}}, name: '14000元以上'}
+                                                        ],
+                                                        emphasis: {
+                                                            itemStyle: {
+                                                                shadowBlur: 10,
+                                                                shadowOffsetX: 0,
+                                                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                                            }
+                                                        }
+                                                    }
+                                        ]
+                            };
+
+
+                            if (option && typeof option === "object") {
+                                    myChart.setOption(option, true);
+                            }
+                        </script>
+                        <span data-toggle="counter-up">2034</span>
+                        <p>统计数据总量</p>
+                    </div>
+                    <p>图一</p>
+                </div>
+                <!--柱形图-->
+                <div class="col-lg-3 col-md-6 text-center" data-aos="fade-up" style="max-width: 55%">
+                    <div class="count-box" style="width: 500px;height: 650px;background: rgba(154,255,239,0.66)">
+                        <div id="container_img2" style="height: 80%"></div>
+                        <script type="text/javascript">
+                            var dom = document.getElementById("container_img2");
+                            var myChart = echarts.init(dom);
+                            var app = {};
+                            option = null;
+                            option = {
+                                title: {
+                                    text: '价格分布',
+                                    subtext: '数据来自链家'
+                                },
+                                tooltip: {
+                                    trigger: 'axis',
+                                    axisPointer: {
+                                        type: 'shadow'
+                                    }
+                                },
+                                legend: {
+                                    data: ['2023年4月',] // 要改
+                                },
+                                grid: {
+                                    left: '3%',
+                                    right: '4%',
+                                    bottom: '3%',
+                                    containLabel: true
+                                },
+                                xAxis: {
+                                    type: 'value',
+                                    boundaryGap: [0, 0.01]
+                                },
+                                yAxis: {
+                                    type: 'category',
+                                    data: ['0-2000元', '2000-4000元', '4000-6000元', '6000-8000元', '8000-10000元', '10000-12000元', '12000-14000元', '14000元以上']
+                                },
+                                series: [
+                                    {
+                                        name: '2023年4月',
+                                        type: 'bar',
+                                        data: [
+                                                {{moneyNum['num0_2']}},
+                                                {{moneyNum['num2_4']}},
+                                                {{moneyNum['num4_6']}},
+                                                {{moneyNum['num6_8']}},
+                                                {{moneyNum['num8_10']}},
+                                                {{moneyNum['num10_12']}},
+                                                {{moneyNum['num12_14']}},
+                                                {{moneyNum['num14']}},
+                                        ]
+                                    },
+
+                                ]
+                            };
+
+
+                            if (option && typeof option === "object") {
+                                myChart.setOption(option, true);
+                            }
+                        </script>
+
+                        <span data-toggle="counter-up">9463.10</span>
+                        <p>平均价格</p>
+                    </div>
+                    <p>图二</p>
+                </div>
+
+                <!--面积-->
+                <!--饼图-->
+                <div class="col-lg-3 col-md-6 text-center" data-aos="fade-up" style="max-width: 50%">
+                    <div class="count-box" style="width: 550px;height: 650px;background: rgba(181,250,72,0.47)">
+                        <div id="container_img1" style="height: 80%"></div>
+
+                        <script type="text/javascript">
+                            var dom = document.getElementById("container_img1");
+                            var myChart = echarts.init(dom);
+                            var app = {};
+                            option = null;
+                            option = {
+                                        title: {
+                                                    text: '面积分布',
+                                                    subtext: '数据来自链家',
+                                                    left: 'center'
+                                        },
+                                        tooltip: {
+                                                    trigger: 'item',
+                                                    formatter: '{a} <br/>{b} : {c} ({d}%)'
+                                        },
+                                        legend: {
+                                                    orient: 'horizontal',
+                                                    y: 'bottom',
+                                                    data: ['30平以下', '30-60平', '60-80平', '80-100平', '100-120平', '120-140平', '140平以上']
+                                        },
+                                        series: [
+                                                    {
+                                                        name: '访问来源',
+                                                        type: 'pie',
+                                                        radius: '50%',
+                                                        center: ['50%', '60%'],
+                                                        data: [
+                                                                {value: {{ areaNum['area30'] }}, name: '30平以下'},
+                                                                {value: {{ areaNum['area30_60'] }}, name: '30-60平'},
+                                                                {value: {{ areaNum['area60_80'] }}, name: '60-80平'},
+                                                                {value: {{ areaNum['area80_100'] }}, name: '80-100平'},
+                                                                {value: {{ areaNum['area100_120'] }}, name: '100-120平'},
+                                                                {value: {{ areaNum['area120_140'] }}, name: '120-140平'},
+                                                                {value: {{ areaNum['area140'] }}, name: '140平以上'},
+                                                        ],
+                                                        emphasis: {
+                                                            itemStyle: {
+                                                                shadowBlur: 10,
+                                                                shadowOffsetX: 0,
+                                                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                                            }
+                                                        }
+                                                    }
+                                        ]
+                            };
+
+
+                            if (option && typeof option === "object") {
+                                    myChart.setOption(option, true);
+                            }
+                        </script>
+                        <span data-toggle="counter-up">2034</span>
+                        <p>统计数据总量</p>
+                    </div>
+                    <p>图三</p>
+                </div>
+                <!--柱形图-->
+                <div class="col-lg-3 col-md-6 text-center" data-aos="fade-up" style="max-width: 55%">
+                    <div class="count-box" style="width: 500px;height: 650px;background: rgba(154,255,239,0.66)">
+                        <div id="container_img3" style="height: 80%"></div>
+                        <script type="text/javascript">
+                            var dom = document.getElementById("container_img3");
+                            var myChart = echarts.init(dom);
+                            var app = {};
+                            option = null;
+                            option = {
+                                title: {
+                                    text: '面积分布',
+                                    subtext: '数据来自链家'
+                                },
+                                tooltip: {
+                                    trigger: 'axis',
+                                    axisPointer: {
+                                        type: 'shadow'
+                                    }
+                                },
+                                legend: {
+                                    data: ['2023年4月',] // 要改
+                                },
+                                grid: {
+                                    left: '3%',
+                                    right: '4%',
+                                    bottom: '3%',
+                                    containLabel: true
+                                },
+                                xAxis: {
+                                    type: 'value',
+                                    boundaryGap: [0, 0.01]
+                                },
+                                yAxis: {
+                                    type: 'category',
+                                    data: ['30平以下', '30-60平', '60-80平', '80-100平', '100-120平', '120-140平', '140平以上']
+                                },
+                                series: [
+                                    {
+                                        name: '2023年4月',
+                                        type: 'bar',
+                                        data: [
+                                                {{ areaNum['area30'] }},
+                                                {{ areaNum['area30_60'] }},
+                                                {{ areaNum['area60_80'] }},
+                                                {{ areaNum['area80_100'] }},
+                                                {{ areaNum['area100_120'] }},
+                                                {{ areaNum['area120_140'] }},
+                                                {{ areaNum['area140'] }},
+                                        ]
+                                    },
+
+                                ]
+                            };
+
+                            if (option && typeof option === "object") {
+                                myChart.setOption(option, true);
+                            }
+                        </script>
+
+                        <span data-toggle="counter-up">96.53</span>
+                        <p>平均面积</p>
+                    </div>
+                    <p>图四</p>
+                </div>
+
+                <!--行政区划-->
+                <!--柱形图-->
+                <div class="col-lg-3 col-md-6 text-center" data-aos="fade-up" style="max-width: 55%">
+                    <div class="count-box" style="width: 500px;height: 650px;background: rgba(154,255,239,0.66)">
+                        <div id="container_img4" style="height: 80%"></div>
+                        <script type="text/javascript">
+                            var dom = document.getElementById("container_img4");
+                            var myChart = echarts.init(dom);
+                            var app = {};
+                            option = null;
+                            option = {
+                                title: {
+                                    text: '各行政区数量',
+                                    subtext: '数据来自链家'
+                                },
+                                tooltip: {
+                                    trigger: 'axis',
+                                    axisPointer: {
+                                        type: 'shadow'
+                                    }
+                                },
+                                legend: {
+                                    data: ['2023年4月',] // 要改
+                                },
+                                grid: {
+                                    left: '3%',
+                                    right: '4%',
+                                    bottom: '3%',
+                                    containLabel: true
+                                },
+                                xAxis: {
+                                    type: 'value',
+                                    boundaryGap: [0, 0.01]
+                                },
+                                yAxis: {
+                                    type: 'category',
+                                    data: ['南山', '福田', '龙岗', '宝安', '龙华', '罗湖', '光明', '坪山', '盐田']
+                                },
+                                series: [
+                                    {
+                                        name: '2023年4月',
+                                        type: 'bar',
+                                        data: [
+                                                {{ districtNum['districtDX'] }},
+                                                {{ districtNum['districtCP'] }},
+                                                {{ districtNum['districtTZ'] }},
+                                                {{ districtNum['districtMTG'] }},
+                                                {{ districtNum['districtFT'] }},
+                                                {{ districtNum['districtSJS'] }},
+                                                {{ districtNum['districtCY'] }},
+                                                {{ districtNum['districtHD'] }},
+                                                {{ districtNum['districtXC'] }},
+<!--                                                {{ districtNum['districtDC'] }},-->
+
+                                        ]
+                                    },
+
+                                ]
+                            };
+
+                            if (option && typeof option === "object") {
+                                myChart.setOption(option, true);
+                            }
+                        </script>
+
+                        <span data-toggle="counter-up">2034</span>
+                        <p>统计数据总量</p>
+                    </div>
+                    <p>图五</p>
+                </div>
+                <!--柱形图-->
+                <div class="col-lg-3 col-md-6 text-center" data-aos="fade-up" style="max-width: 55%">
+                    <div class="count-box" style="width: 500px;height: 650px;background: rgba(154,255,239,0.66)">
+                        <div id="container_img5" style="height: 80%"></div>
+                        <script type="text/javascript">
+                            var dom = document.getElementById("container_img5");
+                            var myChart = echarts.init(dom);
+                            var app = {};
+                            option = null;
+                            option = {
+                                title: {
+                                    text: '行政区平均价格',
+                                    subtext: '数据来自链家'
+                                },
+                                tooltip: {
+                                    trigger: 'axis',
+                                    axisPointer: {
+                                        type: 'shadow'
+                                    }
+                                },
+                                legend: {
+                                    data: ['2023年4月',] // 要改
+                                },
+                                grid: {
+                                    left: '3%',
+                                    right: '4%',
+                                    bottom: '3%',
+                                    containLabel: true
+                                },
+                                xAxis: {
+                                    type: 'value',
+                                    boundaryGap: [0, 0.01]
+                                },
+                                yAxis: {
+                                    type: 'category',
+                                    data: ['南山', '福田', '龙岗', '宝安', '龙华', '罗湖', '光明', '坪山', '盐田']
+                                },
+                                series: [
+                                    {
+                                        name: '2023年4月',
+                                        type: 'bar',
+                                        data: [
+                                                {{ dPriceAve['dPriceAveDX'] }},
+                                                {{ dPriceAve['dPriceAveCP'] }},
+                                                {{ dPriceAve['dPriceAveTZ'] }},
+                                                {{ dPriceAve['dPriceAveMTG'] }},
+                                                {{ dPriceAve['dPriceAveFT'] }},
+                                                {{ dPriceAve['dPriceAveSJS'] }},
+                                                {{ dPriceAve['dPriceAveCY'] }},
+                                                {{ dPriceAve['dPriceAveHD'] }},
+                                                {{ dPriceAve['dPriceAveXC'] }},
+<!--                                                {{ dPriceAve['dPriceAveDC'] }},-->
+
+                                        ]
+                                    },
+
+                                ]
+                            };
+
+                            if (option && typeof option === "object") {
+                                myChart.setOption(option, true);
+                            }
+                        </script>
+
+                        <span data-toggle="counter-up">9463.10</span>
+                        <p>平均价格</p>
+                    </div>
+                    <p>图六</p>
+                </div>
+
+                <!--楼层-->
+                <!--饼图-->
+                <div class="col-lg-3 col-md-6 text-center" data-aos="fade-up" style="max-width: 50%">
+                    <div class="count-box" style="width: 550px;height: 650px;background: rgba(181,250,72,0.47)">
+                        <div id="container_img6" style="height: 80%"></div>
+
+                        <script type="text/javascript">
+                            var dom = document.getElementById("container_img6");
+                            var myChart = echarts.init(dom);
+                            var app = {};
+                            option = null;
+                            option = {
+                                        title: {
+                                                    text: '1万以下租房楼层分布',
+                                                    subtext: '数据来自链家',
+                                                    left: 'center'
+                                        },
+                                        tooltip: {
+                                                    trigger: 'item',
+                                                    formatter: '{a} <br/>{b} : {c} ({d}%)'
+                                        },
+                                        legend: {
+                                                    orient: 'horizontal',
+                                                    y: 'bottom',
+                                                    data: ['高楼层', '中楼层', '低楼层']
+                                        },
+                                        series: [
+                                                    {
+                                                        name: '访问来源',
+                                                        type: 'pie',
+                                                        radius: '50%',
+                                                        center: ['50%', '60%'],
+                                                        data: [
+                                                                {value: {{ floorNum['floorH'] }}, name: '高楼层'},
+                                                                {value: {{ floorNum['floorM'] }}, name: '中楼层'},
+                                                                {value: {{ floorNum['floorL'] }}, name: '低楼层'},
+                                                        ],
+                                                        emphasis: {
+                                                            itemStyle: {
+                                                                shadowBlur: 10,
+                                                                shadowOffsetX: 0,
+                                                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                                            }
+                                                        }
+                                                    }
+                                        ]
+                            };
+
+
+                            if (option && typeof option === "object") {
+                                    myChart.setOption(option, true);
+                            }
+                        </script>
+                        <span data-toggle="counter-up">2080</span>
+                        <p>统计数据总量</p>
+                    </div>
+                    <p>图七</p>
+                </div>
+                <!--柱形图-->
+                <div class="col-lg-3 col-md-6 text-center" data-aos="fade-up" style="max-width: 55%">
+                    <div class="count-box" style="width: 500px;height: 650px;background: rgba(154,255,239,0.66)">
+                        <div id="container_img7" style="height: 80%"></div>
+                        <script type="text/javascript">
+                            var dom = document.getElementById("container_img7");
+                            var myChart = echarts.init(dom);
+                            var app = {};
+                            option = null;
+                            option = {
+                                title: {
+                                    text: '1万以下租房楼层平均价格',
+                                    subtext: '数据来自链家'
+                                },
+                                tooltip: {
+                                    trigger: 'axis',
+                                    axisPointer: {
+                                        type: 'shadow'
+                                    }
+                                },
+                                legend: {
+                                    x: 'right',
+                                    data: ['2023年4月',] // 要改
+                                },
+                                grid: {
+                                    left: '3%',
+                                    right: '4%',
+                                    bottom: '3%',
+                                    containLabel: true
+                                },
+                                xAxis: {
+                                    type: 'value',
+                                    boundaryGap: [0, 0.01]
+                                },
+                                yAxis: {
+                                    type: 'category',
+                                    data: ['高楼层', '中楼层', '低楼层']
+                                },
+                                series: [
+                                    {
+                                        name: '2023年4月',
+                                        type: 'bar',
+                                        data: [
+                                                {{ fPriveAve['fPriveAveH'] }},
+                                                {{ fPriveAve['fPriveAveM'] }},
+                                                {{ fPriveAve['fPriveAveL'] }},
+                                        ]
+                                    },
+
+                                ]
+                            };
+
+                            if (option && typeof option === "object") {
+                                myChart.setOption(option, true);
+                            }
+                        </script>
+
+                        <span data-toggle="counter-up">5093.9</span>
+                        <p>平均价格</p>
+                    </div>
+                    <p>图八</p>
+                </div>
+
+                <!--平均每平米价格-->
+                <!--柱形图-->
+                <div class="col-lg-3 col-md-6 text-center" data-aos="fade-up" style="max-width: 55%">
+                    <div class="count-box" style="width: 500px;height: 500px;background: rgba(154,255,239,0.66)">
+                        <div id="container_img8" style="height: 80%"></div>
+                        <script type="text/javascript">
+                            var dom = document.getElementById("container_img8");
+                            var myChart = echarts.init(dom);
+                            var app = {};
+                            option = null;
+                            option = {
+                                title: {
+                                    text: '各行政区每平米平均价格',
+                                    subtext: '数据来自链家'
+                                },
+                                tooltip: {
+                                    trigger: 'axis',
+                                    axisPointer: {
+                                        type: 'shadow'
+                                    }
+                                },
+                                legend: {
+                                    x: 'right',
+                                    data: ['2023年4月',] // 要改
+                                },
+                                grid: {
+                                    left: '3%',
+                                    right: '4%',
+                                    bottom: '3%',
+                                    containLabel: true
+                                },
+                                xAxis: {
+                                    type: 'value',
+                                    boundaryGap: [0, 0.01]
+                                },
+                                yAxis: {
+                                    type: 'category',
+                                    data: ['南山', '福田', '龙岗', '宝安', '龙华', '罗湖', '光明', '坪山', '盐田']
+                                },
+                                series: [
+                                    {
+                                        name: '2023年4月',
+                                        type: 'bar',
+                                        data: [
+                                                {{ dAve['aveDX'] }},
+                                                {{ dAve['aveCP'] }},
+                                                {{ dAve['aveTZ'] }},
+                                                {{ dAve['aveMTG'] }},
+                                                {{ dAve['aveFT'] }},
+                                                {{ dAve['aveSJS'] }},
+                                                {{ dAve['aveCY'] }},
+                                                {{ dAve['aveHD'] }},
+                                                {{ dAve['aveXC'] }},
+<!--                                                {{ dAve['aveDC'] }},-->
+
+                                        ]
+                                    },
+
+                                ]
+                            };
+
+                            if (option && typeof option === "object") {
+                                myChart.setOption(option, true);
+                            }
+                        </script>
+
+                    </div>
+                    <p>图九</p>
+                </div>
+                <!--柱形图-->
+                <div class="col-lg-3 col-md-6 text-center" data-aos="fade-up" style="max-width: 55%">
+                    <div class="count-box" style="width: 500px;height: 500px;background: rgba(154,255,239,0.66)">
+                        <div id="container_img9" style="height: 80%"></div>
+                        <script type="text/javascript">
+                            var dom = document.getElementById("container_img9");
+                            var myChart = echarts.init(dom);
+                            var app = {};
+                            option = null;
+                            option = {
+                                title: {
+                                    text: '各楼层每平米平均价格',
+                                    subtext: '数据来自链家'
+                                },
+                                tooltip: {
+                                    trigger: 'axis',
+                                    axisPointer: {
+                                        type: 'shadow'
+                                    }
+                                },
+                                legend: {
+                                    x: 'right',
+                                    data: ['2023年4月',] // 要改
+                                },
+                                grid: {
+                                    left: '3%',
+                                    right: '4%',
+                                    bottom: '3%',
+                                    containLabel: true
+                                },
+                                xAxis: {
+                                    type: 'value',
+                                    boundaryGap: [0, 0.01]
+                                },
+                                yAxis: {
+                                    type: 'category',
+                                    data: ['高楼层', '中楼层', '低楼层']
+                                },
+                                series: [
+                                    {
+                                        name: '2023年4月',
+                                        type: 'bar',
+                                        data: [
+                                                {{ fAve['aveH'] }},
+                                                {{ fAve['aveM'] }},
+                                                {{ fAve['aveL'] }},
+                                        ]
+                                    },
+
+                                ]
+                            };
+
+                            if (option && typeof option === "object") {
+                                myChart.setOption(option, true);
+                            }
+                        </script>
+
+                    </div>
+                    <p>图十</p>
+                </div>
+
+            </div>
+        </div>
+
+    </section><!-- End Counts Section -->
+
+          <!-- ======= 分析报告 ======= -->
+        <section id="faq" class="faq section-bg">
+          <div class="container">
+
+            <div class="section-title">
+              <h2>分析报告</h2>
+            </div>
+
+            <div class="row  d-flex align-items-stretch">
+
+              <div class="col-lg-6 faq-item" data-aos="fade-up">
+                <h4>图一、图二，深圳租房价格分布</h4>
+                <p>
+                    深圳租房的价格主要在2000-6000之间，属于中等位置，不像北京上海那么贵，
+                    也没有广东那么便宜。
+                </p>
+              </div>
+
+              <div class="col-lg-6 faq-item" data-aos="fade-up" data-aos-delay="100">
+                <h4>图三、图四，深圳租房面积分布</h4>
+                <p>
+                  北京有超过一半的租房面积在100平以下，30-60,80-100这两个区间房源较多。
+                  同时还有一定数量的大面积房源，足够满足绝大多数租房者的同时
+                    ，也保证了追求更高生活品质的人的租房需求
+                </p>
+              </div>
+
+              <div class="col-lg-6 faq-item" data-aos="fade-up" data-aos-delay="100">
+                <h4>图五、图六和图九，深圳各行政区租房分布</h4>
+                <p>
+                    可以看出租房分布最多的地方是福田、龙岗和南山，福田和南山一个作为深圳的金融中心，
+                    一个作为深圳的科技中心，租房平均价格都保持了一个较高的水平。而龙岗区由于华为
+                    部分业务迁到东莞以及被美国制裁而造成的影响，对龙岗经济发展造成了重创，可能对
+                    租房价格方面也有一定的影响。
+                </p>
+              </div>
+
+              <div class="col-lg-6 faq-item" data-aos="fade-up" data-aos-delay="100">
+                <h4>图七、图八和图十，深圳各楼层租房分布</h4>
+                <p>
+                    深圳和其他三个城市一样，楼层分布比较均匀。楼层平均价格也比较相近。
+                    但是每平米的平均价格低楼层会比另外两个楼层更贵一些。
+                </p>
+              </div>
+
+    </div>
+
+    </div>
+    </section><!-- End Frequently Asked Questions Section -->
+
+</main><!-- End #main -->
+
+<!-- End Footer -->
+
+<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="static/assets/vendor/jquery/jquery.min.js"></script>
+<script src="static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="static/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+<script src="static/assets/vendor/php-email-form/validate.js"></script>
+<script src="static/assets/vendor/jquery-sticky/jquery.sticky.js"></script>
+<script src="static/assets/vendor/venobox/venobox.min.js"></script>
+<script src="static/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+<script src="static/assets/vendor/counterup/counterup.min.js"></script>
+<script src="static/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="static/assets/vendor/aos/aos.js"></script>
+
+<!-- Template Main JS File -->
+<script src="static/assets/js/main.js"></script>
+
+</body>
+
+</html>
